@@ -54,7 +54,7 @@ add_features <- function(data) {
   
   # Calculate yesterday's max, min, mean temperatures
   temp_stats <- data %>% 
-    select(.data$datetime, .data$date, matches("temp_location[1-6]{1}$")) %>% 
+    select(.data$datetime, .data$date, matches("temp_location3{1}$")) %>% 
     pivot_longer(cols = -c(.data$datetime, .data$date), names_to = "location", 
                  values_to = "temp") %>% 
     group_by(.data$date) %>% 
@@ -97,18 +97,16 @@ load_pv_data <- function() {
     add_lags(
       lags = list(
         "pv_power_mw" = 48*7,
-        "temp_location1" = 1:6,
-        "temp_location2" = 1:6,
         "temp_location3" = 1:6,
-        "temp_location4" = 1:6,
-        "temp_location5" = 1:6,
-        "temp_location6" = 1:6,
-        "solar_location1" = 1:6,
-        "solar_location2" = 1:6,
-        "solar_location3" = 1:6,
-        "solar_location4" = 1:6,
-        "solar_location5" = 1:6,
-        "solar_location6" = 1:6
+        #"temp_location4" = 1:6,
+       # "temp_location5" = 1:6,
+        #"temp_location6" = 1:6,
+        #"solar_location1" = 1:6,
+        #"solar_location2" = 1:6,
+       # "solar_location3" = 1:6,
+       # "solar_location4" = 1:6,
+       # "solar_location5" = 1:6,
+       # "solar_location6" = 1:6
       )
     ) %>% 
     mutate(period = hh_to_period(.data$datetime),
@@ -132,18 +130,17 @@ load_demand_data <- function() {
     add_lags(
       lags = list(
         "demand_mw" = 48*7,
-        "temp_location1" = c(1,2,6,12,24,48,96),
-        "temp_location2" = c(1,2,6,12,24,48,96),
+        #"temp_location1" = c(1,2,6,12,24,48,96),
+       # "temp_location2" = c(1,2,6,12,24,48,96),
         "temp_location3" = c(1,2,6,12,24,48,96),
-        "temp_location4" = c(1,2,6,12,24,48,96),
-        "temp_location5" = c(1,2,6,12,24,48,96),
-        "temp_location6" = c(1,2,6,12,24,48,96),
-        "solar_location1" = c(1,2,6,12,24,48,96),
-        "solar_location2" = c(1,2,6,12,24,48,96),
-        "solar_location3" = c(1,2,6,12,24,48,96),
-        "solar_location4" = c(1,2,6,12,24,48,96),
-        "solar_location5" = c(1,2,6,12,24,48,96),
-        "solar_location6" = c(1,2,6,12,24,48,96)
+        #"temp_location4" = c(1,2,6,12,24,48,96),
+       # "temp_location5" = c(1,2,6,12,24,48,96),
+      #  "temp_location6" = c(1,2,6,12,24,48,96),
+       # "solar_location2" = c(1,2,6,12,24,48,96),
+       # "solar_location3" = c(1,2,6,12,24,48,96),
+       # "solar_location4" = c(1,2,6,12,24,48,96),
+       # "solar_location5" = c(1,2,6,12,24,48,96),
+       # "solar_location6" = c(1,2,6,12,24,48,96)
       )
     ) %>% 
     add_features() %>% 
