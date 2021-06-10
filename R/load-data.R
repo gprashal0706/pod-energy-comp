@@ -142,23 +142,23 @@ load_demand_data <- function() {
        # "solar_location5" = c(1,2,6,12,24,48,96),
        # "solar_location6" = c(1,2,6,12,24,48,96)
       )
-    ) %>% 
-    add_features() %>% 
-    mutate(
+      ) %>% }
+  ## # add_features() %>% 
+  ## # mutate(
       # lockdown = if_else(between(date(datetime), ymd("2020-03-23"),
       #                            ymd("2020-06-23")), 1, 0),
-      period = hh_to_period(.data$datetime),
-      yday = yday_ly_adj(.data$datetime),
-      wday = wday(.data$datetime, week_start = 1)  # 1 = Monday
-    ) %>%  
-    slice(-c(1:(48*7))) %>%  # removes first 7 days missing week-lagged demand data
-    filter(
-      .data$period %in% 32:42,  # FIXME: Hard coded. Train with charging periods only
-      date(.data$datetime) != ymd("2018-05-08"),  # outlier 0 demand
-      date(.data$datetime) != ymd("2018-05-10"),  # outlier high demand
-      date(.data$datetime) != ymd("2018-11-04")   # outlier high demand
-    )
-}
+      ##period = hh_to_period(.data$datetime),
+      ##yday = yday_ly_adj(.data$datetime),
+     ## wday = wday(.data$datetime, week_start = 1)  # 1 = Monday
+ ##   ) %>%  
+   ## slice(-c(1:(48*7))) %>%  # removes first 7 days missing week-lagged demand data
+   ## filter(
+   ##   .data$period %in% 32:42,  # FIXME: Hard coded. Train with charging periods only
+    ##  date(.data$datetime) != ymd("2018-05-08"),  # outlier 0 demand
+     ## date(.data$datetime) != ymd("2018-05-10"),  # outlier high demand
+    ##  date(.data$datetime) != ymd("2018-11-04")   # outlier high demand
+ ##   )
+
 
 
 #' Adjust yday for leap years
