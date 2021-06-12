@@ -96,7 +96,7 @@ load_pv_data <- function() {
     select(-.data$demand_mw) %>% 
     add_lags(
       lags = list(
-        "pv_power_mw" = 48*7,
+        "pv_power_mw" = 1441*7,
         "temp_location3" = 1:6,
         #"temp_location4" = 1:6,
        # "temp_location5" = 1:6,
@@ -112,7 +112,7 @@ load_pv_data <- function() {
     mutate(period = hh_to_period(.data$datetime),
            month = month(.data$datetime),
            yday = yday_ly_adj(.data$datetime)) %>% 
-    slice(-c(1:(48*7)))  # removes first 7 days missing week-lagged PV data
+    slice(-c(1:(1441*7)))  # removes first 7 days missing week-lagged PV data
 }
 
 #' Load demand data
@@ -129,10 +129,10 @@ load_demand_data <- function() {
     select(-.data$pv_power_mw) %>% 
     add_lags(
       lags = list(
-        "demand_mw" = 48*7,
+        "demand_mw" = 1441*7,
         #"temp_location1" = c(1,2,6,12,24,48,96),
        # "temp_location2" = c(1,2,6,12,24,48,96),
-        "temp_location3" = c(1,2,6,12,24,48,96),
+        "temp_location3" = c(1,2,6,12,24,48,96)
         #"temp_location4" = c(1,2,6,12,24,48,96),
        # "temp_location5" = c(1,2,6,12,24,48,96),
       #  "temp_location6" = c(1,2,6,12,24,48,96),
