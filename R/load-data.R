@@ -133,6 +133,9 @@ load_demand_data <- function() {
         #"temp_location1" = c(1,2,6,12,24,48,96),
        # "temp_location2" = c(1,2,6,12,24,48,96),
         "temp_location3" = c(1,2,6,12,24,48,96)
+     ) 
+  ) %>% 
+}
         #"temp_location4" = c(1,2,6,12,24,48,96),
        # "temp_location5" = c(1,2,6,12,24,48,96),
       #  "temp_location6" = c(1,2,6,12,24,48,96),
@@ -141,8 +144,7 @@ load_demand_data <- function() {
        # "solar_location4" = c(1,2,6,12,24,48,96),
        # "solar_location5" = c(1,2,6,12,24,48,96),
        # "solar_location6" = c(1,2,6,12,24,48,96)
-      )
-      ) %>% }
+      
   ## # add_features() %>% 
   ## # mutate(
       # lockdown = if_else(between(date(datetime), ymd("2020-03-23"),
@@ -157,7 +159,7 @@ load_demand_data <- function() {
     ##  date(.data$datetime) != ymd("2018-05-08"),  # outlier 0 demand
      ## date(.data$datetime) != ymd("2018-05-10"),  # outlier high demand
     ##  date(.data$datetime) != ymd("2018-11-04")   # outlier high demand
- ##   )
+    
 
 
 
@@ -175,3 +177,4 @@ yday_ly_adj <- function(x) {
   x[x_ly & x > 60] <- x[x_ly & x > 60] - 1  # > 29 Feb
   x
 }
+
