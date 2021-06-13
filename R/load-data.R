@@ -48,6 +48,7 @@ add_lags <- function(data, lags = NULL) {
 #' @importFrom tidyselect matches
 #' @importFrom tidyr pivot_longer
 #' @importFrom rlang .data
+
 add_features <- function(data) {
   data <- data %>% 
     mutate(date = date(.data$datetime))
@@ -92,12 +93,12 @@ add_features <- function(data) {
 #' @importFrom lubridate yday month
 #' @importFrom rlang .data
 load_pv_data <- function() {
-  podEnergyComp::pod %>% 
+  pod-energy-comp-denmark::pod %>% 
     select(-.data$demand_mw) %>% 
     add_lags(
       lags = list(
         "pv_power_mw" = 1441*7,
-        "temp_location3" = 1:6,
+        "temp_location3" = 1:6
         #"temp_location4" = 1:6,
        # "temp_location5" = 1:6,
         #"temp_location6" = 1:6,
@@ -124,18 +125,18 @@ load_pv_data <- function() {
 #' @importFrom dplyr select mutate filter slice if_else between summarise ungroup
 #' @importFrom lubridate yday wday month ymd date
 #' @importFrom rlang .data
-load_demand_data <- function() {
-  podEnergyComp::pod %>% 
-    select(-.data$pv_power_mw) %>% 
-    add_lags(
-      lags = list(
-        "demand_mw" = 1441*7,
+#load_demand_data <- function() {pod-energy-comp-denmark::pod %>% 
+   # select(-.data$pv_power_mw) %>% 
+   # add_lags(
+   #   lags = list(
+       # "demand_mw" = 1441*7,
         #"temp_location1" = c(1,2,6,12,24,48,96),
-       # "temp_location2" = c(1,2,6,12,24,48,96),
-        "temp_location3" = c(1,2,6,12,24,48,96)
-     ) 
-  ) %>% 
-}
+        # "temp_location2" = c(1,2,6,12,24,48,96),
+       # "temp_location3" = c(1,2,6,12,24,48,96)
+      #) 
+    #) %>% 
+
+  
         #"temp_location4" = c(1,2,6,12,24,48,96),
        # "temp_location5" = c(1,2,6,12,24,48,96),
       #  "temp_location6" = c(1,2,6,12,24,48,96),
@@ -160,8 +161,7 @@ load_demand_data <- function() {
      ## date(.data$datetime) != ymd("2018-05-10"),  # outlier high demand
     ##  date(.data$datetime) != ymd("2018-11-04")   # outlier high demand
     
-
-
+#}
 
 #' Adjust yday for leap years
 #' 
